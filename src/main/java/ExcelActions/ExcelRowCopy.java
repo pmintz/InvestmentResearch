@@ -1,18 +1,34 @@
 package ExcelActions;
 
+import org.apache.poi.hssf.record.RecordInputStream;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-public class ExcelRowCopy {
+public class ExcelRowCopy extends RangeCopier{
+
+    public ExcelRowCopy(Sheet sheet) {
+        super(sheet);
+    }
+
+    public ExcelRowCopy(Sheet sourceSheet, Sheet destSheet) {
+        super(sourceSheet, destSheet);
+    }
+
+    @Override
+    public void copyRange(CellRangeAddress tilePatternRange, CellRangeAddress tileDestRange) {
+        super.copyRange(tilePatternRange, tileDestRange);
+    }
 
     public static void main(String[] args) {
-        String sourceFilePath = "source.xlsx";
-        String destinationFilePath = "destination.xlsx";
-        int rowIndexToCopy = 1; // Row index to copy (0-based)
+        System.out.println(System.getProperty("user.dir"));
+        String sourceFilePath = "./src/main/resources/nvda-income-statement-annual.xlsx";
+        String destinationFilePath = "./src/main/resources/MASTER COPY_copy.xlsx";
+        int rowIndexToCopy = 23; // Row index to copy (0-based)
 
         try (FileInputStream sourceFile = new FileInputStream(sourceFilePath);
              FileInputStream destinationFile = new FileInputStream(destinationFilePath);
@@ -20,12 +36,20 @@ public class ExcelRowCopy {
              Workbook destinationWorkbook = new XSSFWorkbook(destinationFile)) {
 
             Sheet sourceSheet = sourceWorkbook.getSheetAt(0);
-            Sheet destinationSheet = destinationWorkbook.getSheetAt(0);
+            Sheet destinationSheet = destinationWorkbook.getSheetAt(1);
 
-            Row sourceRow = sourceSheet.getRow(rowIndexToCopy);
-            Row destinationRow = destinationSheet.createRow(destinationSheet.getLastRowNum() + 1);
+            ExcelRowCopy erc = new ExcelRowCopy(sourceSheet, destinationSheet);
+            CellRangeAddress sourceCellRangeAddress = new CellRangeAddress(24, 24,1,11);
+            CellRangeAddress destinationCellRangeAddress = new CellRangeAddress(2, 2,1,11);
+            erc.copyRange(sourceCellRangeAddress, destinationCellRangeAddress);
 
-            copyRow(sourceRow, destinationRow);
+
+            //Row sourceRow = sourceSheet.getRow(rowIndexToCopy);
+            ////Row destinationRow = destinationSheet.createRow(destinationSheet.getLastRowNum() + 1);
+            //Row destinationRow = destinationSheet.createRow(3);
+
+            //copyRow(sourceRow, destinationRow);
+
 
             try (FileOutputStream outputStream = new FileOutputStream(destinationFilePath)) {
                 destinationWorkbook.write(outputStream);
@@ -62,5 +86,10 @@ public class ExcelRowCopy {
                 }
             }
         }
+    }
+
+    @Override
+    protected void adjustCellReferencesInsideFormula(Cell cell, Sheet destSheet, int deltaX, int deltaY) {
+
     }
 }
