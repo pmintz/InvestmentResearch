@@ -1,14 +1,20 @@
 package ExcelActions;
 
-import org.apache.poi.ss.usermodel.*;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.RangeCopier;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.*;
+import Selenium.GetSourceData;
 
 public class ExcelRowCopy extends RangeCopier {
 
@@ -43,16 +49,19 @@ public class ExcelRowCopy extends RangeCopier {
 
     public static void main(String[] args) {
 
-        try (FileInputStream sourceFile = new FileInputStream(sourceFilePath);
-             FileInputStream destinationFile = new FileInputStream(destinationFilePath);
-             Workbook sourceWorkbook = new XSSFWorkbook(sourceFile);
-             Workbook destinationWorkbook = new XSSFWorkbook(destinationFile)) {
-            intializeData();
-            copyData(sourceWorkbook, destinationWorkbook);
+        GetSourceData getSourceData = new GetSourceData();
+        getSourceData.login();
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        // try (FileInputStream sourceFile = new FileInputStream(sourceFilePath);
+        //      FileInputStream destinationFile = new FileInputStream(destinationFilePath);
+        //      Workbook sourceWorkbook = new XSSFWorkbook(sourceFile);
+        //      Workbook destinationWorkbook = new XSSFWorkbook(destinationFile)) {
+        //     intializeData();
+        //     copyData(sourceWorkbook, destinationWorkbook);
+
+        // } catch (IOException e) {
+        //     e.printStackTrace();
+        // }
     }
 
     public ExcelRowCopy(Sheet sheet) {
