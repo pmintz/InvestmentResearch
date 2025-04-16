@@ -22,7 +22,30 @@ public class GetSourceData {
         cardNum.sendKeys("1000601559668");
         WebElement submitButton = driver.findElement(By.id("submit"));
         submitButton.click();
-        closeBrowser();
+        //closeBrowser();
+
+    }
+
+    public void enterTickerSymbol(){
+        driver.findElement(By.id(""));
+    }
+
+    public void clickHomeLink(){
+        driver.findElement(By.id(""));
+    }
+
+    public void checkForResults(){
+        //look for search-all_hit
+    }
+
+    public void retrieveDataFromResultsPage(){
+        //copy all data java data structures
+    }
+
+
+
+    public void copySourceData(){
+
 
     }
 
