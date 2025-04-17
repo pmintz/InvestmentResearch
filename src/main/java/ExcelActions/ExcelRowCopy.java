@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import UserInput.UserInput;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.RangeCopier;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -51,6 +52,8 @@ public class ExcelRowCopy extends RangeCopier {
 
         GetSourceData getSourceData = new GetSourceData();
         getSourceData.login();
+        UserInput ui = new UserInput();
+        ui.promptUser();
 
         // try (FileInputStream sourceFile = new FileInputStream(sourceFilePath);
         //      FileInputStream destinationFile = new FileInputStream(destinationFilePath);

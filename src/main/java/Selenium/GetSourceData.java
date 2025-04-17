@@ -1,6 +1,7 @@
 package Selenium;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -11,7 +12,7 @@ public class GetSourceData {
     //Java Testing with Selenium Course
     //System Design was HARD until I Learned these 30 Concepts
 
-    WebDriver driver;
+    static WebDriver driver;
 
     public void login(){
 
@@ -26,8 +27,15 @@ public class GetSourceData {
 
     }
 
-    public void enterTickerSymbol(){
-        driver.findElement(By.id(""));
+
+
+    public void enterTickerSymbol(String ticker){
+        //class="mdc-search-field__input mds-search-field__input__rxp"
+        //driver.findElement(By.id(""));
+        //class="mds-navigation__item-text__rxp"
+        WebElement searchTicker = driver.findElement(By.className("mdc-search-field__input"));
+        searchTicker.sendKeys(ticker);
+        searchTicker.sendKeys(Keys.RETURN);
     }
 
     public void clickHomeLink(){
