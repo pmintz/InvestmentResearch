@@ -1,6 +1,6 @@
 package UserInput;
 
-import Selenium.GetSourceData;
+import Selenium.SourceData;
 
 import java.util.Scanner;
 
@@ -8,7 +8,7 @@ public class UserInput {
 
     String readString;
 
-    GetSourceData getSourceData;
+    SourceData sourceData;
 
     public void promptUser() {
 
@@ -25,8 +25,15 @@ public class UserInput {
                     break;
                 } else {
                     System.out.println("Gathering data");
-                    getSourceData = new GetSourceData();
-                    getSourceData.enterTickerSymbol(readString);
+                    sourceData = new SourceData();
+                    sourceData.enterTickerSymbol(readString);
+                }
+
+                //if(sourceData.checkForResults()){
+                if(sourceData.clickUSSecuritiesLink() ){
+                    sourceData.retrieveDataFromResultsPage();
+                }else{
+                    System.out.println("No results");
                 }
 
             }

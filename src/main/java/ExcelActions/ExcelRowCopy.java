@@ -1,6 +1,5 @@
 package ExcelActions;
 
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -13,9 +12,8 @@ import org.apache.poi.ss.usermodel.RangeCopier;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import Selenium.GetSourceData;
+import Selenium.SourceData;
 
 public class ExcelRowCopy extends RangeCopier {
 
@@ -50,8 +48,8 @@ public class ExcelRowCopy extends RangeCopier {
 
     public static void main(String[] args) {
 
-        GetSourceData getSourceData = new GetSourceData();
-        getSourceData.login();
+        SourceData sourceData = new SourceData();
+        sourceData.login();
         UserInput ui = new UserInput();
         ui.promptUser();
 
