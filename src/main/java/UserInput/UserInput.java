@@ -30,7 +30,7 @@ public class UserInput {
                 }
 
                 //if(sourceData.checkForResults()){
-                if(sourceData.clickUSSecuritiesLink() ){
+                if(sourceData.clickUSSecuritiesLink(readString) ){
                     sourceData.retrieveDataFromResultsPage();
                 }else{
                     System.out.println("No results");

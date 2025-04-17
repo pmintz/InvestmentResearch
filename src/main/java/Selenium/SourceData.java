@@ -24,10 +24,11 @@ public class SourceData {
 
     public void login(){
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("headless");
-        driver = new ChromeDriver(/*options*/);
+        //options.addArguments("headless");
+        options.setImplicitWaitTimeout(ofSeconds(5));
+        driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(ofSeconds(4));
+        //driver.manage().timeouts().implicitlyWait(ofSeconds(4));
         driver.get("https://research.morningstar.com/ic/authenticate?Name=Clifton%20Park");
         WebElement cardNum = driver.findElement(By.id("password"));
         cardNum.sendKeys("1000601559668");
@@ -47,7 +48,7 @@ public class SourceData {
         driver.findElement(By.id(""));
     }
 
-    public boolean clickUSSecuritiesLink(){
+    public boolean clickUSSecuritiesLink(String ticker){
 
         // Wait until the new page is loaded
         /*WebDriverWait wait = new WebDriverWait(driver, 10);
@@ -64,6 +65,9 @@ public class SourceData {
                     String s = we.getDomAttribute("href");
                     System.out.println(s);
                 }
+
+                WebElement usSecuritiesLink = driver.findElement(By.cssSelector("a[href='/search/us-securities?query=" + ticker + "']"  ) );
+                usSecuritiesLink.click();
                 return true;
             }
 
