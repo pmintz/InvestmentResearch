@@ -22,7 +22,7 @@ public class SourceData {
 
     static WebDriver driver;
 
-    public void login(){
+    public void login() {
         ChromeOptions options = new ChromeOptions();
         //options.addArguments("headless");
         options.setImplicitWaitTimeout(ofSeconds(5));
@@ -37,77 +37,43 @@ public class SourceData {
     }
 
 
-
-    public void enterTickerSymbol(String ticker){
+    public void enterTickerSymbol(String ticker) {
         WebElement searchTicker = driver.findElement(By.className("mdc-search-field__input"));
         searchTicker.sendKeys(ticker);
         searchTicker.sendKeys(Keys.RETURN);
     }
 
-    public void clickHomeLink(){
-        driver.findElement(By.id(""));
+    public void clickUSSecuritiesLink(String ticker) {
+        WebElement usSecuritiesLink = driver.findElement(By.cssSelector("a[href='/search/us-securities?query=" + ticker + "']"));
+        usSecuritiesLink.click();
     }
 
-    public boolean clickUSSecuritiesLink(String ticker){
-
-        // Wait until the new page is loaded
-        /*WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.urlContains("new-page"));*/
-
+    public boolean checkForResults(String ticker) {
+        clickUSSecuritiesLink(ticker);
         try {
-            //WebElement usSecuritiesLink = driver.findElement(By.xpath("//a[href=/search/us-securiteis?q]") );
-
-            List<WebElement> links = driver.findElements(By.xpath("//a"));
-            if(links == null){
-                return false;
-            }else{
-                for(WebElement we : links){
-                    String s = we.getDomAttribute("href");
-                    System.out.println(s);
-                }
-
-                WebElement usSecuritiesLink = driver.findElement(By.cssSelector("a[href='/search/us-securities?query=" + ticker + "']"  ) );
-                usSecuritiesLink.click();
-                return true;
-            }
-
-            //WebElement usSecuritiesLink = driver.findElement(By.partialLinkText("U.S. Securities"));
-            /*if (usSecuritiesLink != null) {
-                usSecuritiesLink.click();
-                WebElement errorClass = driver.findElement(By.className("error"));
-                if (errorClass == null) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } else {
-                return false;
-            }*/
-        }catch(Exception e){
-            System.out.println(e.getMessage());
+            driver.findElement(By.className("search-all__hit"));
+            return true;
+        } catch (Exception e) {
             return false;
         }
-
     }
 
-    public boolean checkForResults(){
-        WebElement searchHitDiv = driver.findElement(By.className("search-all__hit"));
-        return searchHitDiv != null;
+    public void clickHomeLink(String ticker){
+        WebElement usSecuritiesLink = driver.findElement(By.cssSelector("a[href='/search/us-securities?query=" + ticker + "']"));
+        usSecuritiesLink.click();
     }
 
-    public void retrieveDataFromResultsPage(){
-        //
+    public void retrieveDataFromResultsPage() {
         System.out.println("Results Found");
     }
 
 
-
-    public void copySourceDataToMasterCopy(){
+    public void copySourceDataToMasterCopy() {
 
 
     }
 
-    public void closeBrowser(){
+    public void closeBrowser() {
         driver.quit();
     }
 
