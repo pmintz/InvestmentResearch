@@ -32,8 +32,10 @@ public class UserInput {
                 //if(sourceData.checkForResults()){
                 if(sourceData.checkForResults(readString) ){
                     sourceData.retrieveDataFromResultsPage();
+                    sourceData.pageRefresh();
                 }else{
                     System.out.println("No results");
+                    sourceData.pageRefresh();
                 }
 
             }

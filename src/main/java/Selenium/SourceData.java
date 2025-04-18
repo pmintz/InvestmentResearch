@@ -44,13 +44,19 @@ public class SourceData {
     }
 
     public void clickUSSecuritiesLink(String ticker) {
-        WebElement usSecuritiesLink = driver.findElement(By.cssSelector("a[href='/search/us-securities?query=" + ticker + "']"));
-        usSecuritiesLink.click();
+        try {
+            Thread.sleep(5000);
+            WebElement usSecuritiesLink = driver.findElement(By.cssSelector("a[href='/search/us-securities?query=" + ticker + "']"));
+            usSecuritiesLink.click();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public boolean checkForResults(String ticker) {
         clickUSSecuritiesLink(ticker);
         try {
+            Thread.sleep(5000);
             driver.findElement(By.className("search-all__hit"));
             return true;
         } catch (Exception e) {
@@ -58,9 +64,13 @@ public class SourceData {
         }
     }
 
-    public void clickHomeLink(String ticker){
-        WebElement usSecuritiesLink = driver.findElement(By.cssSelector("a[href='/search/us-securities?query=" + ticker + "']"));
-        usSecuritiesLink.click();
+    public void pageRefresh(){
+        try {
+            Thread.sleep(5000);
+            driver.get("https://research.morningstar.com/home");
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
     public void retrieveDataFromResultsPage() {
