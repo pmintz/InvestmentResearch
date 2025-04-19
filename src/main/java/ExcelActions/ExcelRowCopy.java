@@ -131,29 +131,4 @@ public class ExcelRowCopy extends RangeCopier {
 
     }
 
-        /*private static void copyRow(Row sourceRow, Row destinationRow) {
-        for (int i = 0; i < sourceRow.getLastCellNum(); i++) {
-            Cell sourceCell = sourceRow.getCell(i);
-            Cell destinationCell = destinationRow.createCell(i);
-
-            if (sourceCell != null) {
-                switch (sourceCell.getCellType()) {
-                    case STRING:
-                        destinationCell.setCellValue(sourceCell.getStringCellValue());
-                        break;
-                    case NUMERIC:
-                        destinationCell.setCellValue(sourceCell.getNumericCellValue());
-                        break;
-                    case BOOLEAN:
-                        destinationCell.setCellValue(sourceCell.getBooleanCellValue());
-                        break;
-                    case FORMULA:
-                        destinationCell.setCellFormula(sourceCell.getCellFormula());
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
-    }*/
 }

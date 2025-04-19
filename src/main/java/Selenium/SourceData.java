@@ -76,6 +76,18 @@ public class SourceData extends Thread {
 
     public void retrieveDataFromResultsPage() {
         System.out.println("Results Found");
+
+        try {
+            Thread.sleep(2000);
+            List<WebElement> webElementList =
+                    driver.findElements(By.xpath(
+        "//a[contains(@class,'mdc-security-module__name')]"
+                    ));
+            WebElement webElement = webElementList.get(0);
+            webElement.click();
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
     }
 
 
@@ -94,11 +106,13 @@ public class SourceData extends Thread {
 
         if (checkForResults()) {
             retrieveDataFromResultsPage();
-            pageRefresh();
+            //pageRefresh();
         } else {
             System.out.println("No results");
             pageRefresh();
         }
+
+        System.out.print("Enter ticker symbol and then press \"Enter\".  Type \"close\" to exit: ");
 
     }
 
