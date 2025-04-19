@@ -14,13 +14,14 @@ import java.util.List;
 
 import static java.time.Duration.*;
 
-public class SourceData {
+public class SourceData extends Thread {
 
     //youtube
     //Java Testing with Selenium Course
     //System Design was HARD until I Learned these 30 Concepts
 
     static WebDriver driver;
+    private String ticker;
 
     public void login() {
         ChromeOptions options = new ChromeOptions();
@@ -37,7 +38,7 @@ public class SourceData {
     }
 
 
-    public void enterTickerSymbol(String ticker) {
+    public void enterTickerSymbol() {
         WebElement searchTicker = driver.findElement(By.className("mdc-search-field__input"));
         searchTicker.sendKeys(ticker);
         searchTicker.sendKeys(Keys.RETURN);
@@ -45,30 +46,30 @@ public class SourceData {
 
     public void clickUSSecuritiesLink(String ticker) {
         try {
-            //Thread.sleep(3000);
+            Thread.sleep(2000);
             WebElement usSecuritiesLink = driver.findElement(By.cssSelector("a[href='/search/us-securities?query=" + ticker + "']"));
             usSecuritiesLink.click();
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public boolean checkForResults(String ticker) {
+    public boolean checkForResults() {
         clickUSSecuritiesLink(ticker);
         try {
-            //Thread.sleep(3000);
-            driver.findElement(By.className("search-all__hit"));
+            Thread.sleep(2000);
+            driver.findElement(By.className("search-us-securities__hit"));
             return true;
         } catch (Exception e) {
             return false;
         }
     }
 
-    public void pageRefresh(){
+    public void pageRefresh() {
         try {
-            //Thread.sleep(3000);
+            Thread.sleep(2000);
             driver.get("https://research.morningstar.com/home");
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
@@ -86,5 +87,28 @@ public class SourceData {
     public void closeBrowser() {
         driver.quit();
     }
+
+    @Override
+    public void run() {
+        enterTickerSymbol();
+
+        if (checkForResults()) {
+            retrieveDataFromResultsPage();
+            pageRefresh();
+        } else {
+            System.out.println("No results");
+            pageRefresh();
+        }
+
+    }
+
+    public String getTicker() {
+        return ticker;
+    }
+
+    public void setTicker(String ticker) {
+        this.ticker = ticker;
+    }
+
 
 }

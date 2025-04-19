@@ -46,25 +46,6 @@ public class ExcelRowCopy extends RangeCopier {
     static Integer[] destDilutedWASOArray = new Integer[]{};
     static Integer[] destNetIncomeAfterNCMIArray = new Integer[]{};
 
-    public static void main(String[] args) {
-
-        SourceData sourceData = new SourceData();
-        sourceData.login();
-        UserInput ui = new UserInput();
-        ui.promptUser();
-
-        // try (FileInputStream sourceFile = new FileInputStream(sourceFilePath);
-        //      FileInputStream destinationFile = new FileInputStream(destinationFilePath);
-        //      Workbook sourceWorkbook = new XSSFWorkbook(sourceFile);
-        //      Workbook destinationWorkbook = new XSSFWorkbook(destinationFile)) {
-        //     intializeData();
-        //     copyData(sourceWorkbook, destinationWorkbook);
-
-        // } catch (IOException e) {
-        //     e.printStackTrace();
-        // }
-    }
-
     public ExcelRowCopy(Sheet sheet) {
         super(sheet);
     }

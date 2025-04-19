@@ -19,28 +19,19 @@ public class UserInput {
             while (scanner.hasNextLine()) {
 
                 readString = scanner.nextLine();
+                sourceData = new SourceData();
 
                 if (readString.equalsIgnoreCase("close")) {
                     System.out.println("Exiting program...");
+                    sourceData.closeBrowser();
                     break;
                 } else {
                     System.out.println("Gathering data");
-
-                    //allow SourceData to extend Thread
-                    //override run method
-                    //put remaining code within thread.run()
-                    sourceData = new SourceData();
-                    sourceData.enterTickerSymbol(readString);
+                    sourceData.setTicker(readString);
+                    sourceData.start();
                 }
 
-                //if(sourceData.checkForResults()){
-                if(sourceData.checkForResults(readString) ){
-                    sourceData.retrieveDataFromResultsPage();
-                    sourceData.pageRefresh();
-                }else{
-                    System.out.println("No results");
-                    sourceData.pageRefresh();
-                }
+                sourceData.join();
 
             }
 
