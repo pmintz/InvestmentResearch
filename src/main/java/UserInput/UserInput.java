@@ -25,6 +25,10 @@ public class UserInput {
                     break;
                 } else {
                     System.out.println("Gathering data");
+
+                    //allow SourceData to extend Thread
+                    //override run method
+                    //put remaining code within thread.run()
                     sourceData = new SourceData();
                     sourceData.enterTickerSymbol(readString);
                 }

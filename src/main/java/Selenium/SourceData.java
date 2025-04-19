@@ -45,7 +45,7 @@ public class SourceData {
 
     public void clickUSSecuritiesLink(String ticker) {
         try {
-            Thread.sleep(5000);
+            //Thread.sleep(3000);
             WebElement usSecuritiesLink = driver.findElement(By.cssSelector("a[href='/search/us-securities?query=" + ticker + "']"));
             usSecuritiesLink.click();
         }catch(Exception e){
@@ -56,7 +56,7 @@ public class SourceData {
     public boolean checkForResults(String ticker) {
         clickUSSecuritiesLink(ticker);
         try {
-            Thread.sleep(5000);
+            //Thread.sleep(3000);
             driver.findElement(By.className("search-all__hit"));
             return true;
         } catch (Exception e) {
@@ -66,7 +66,7 @@ public class SourceData {
 
     public void pageRefresh(){
         try {
-            Thread.sleep(5000);
+            //Thread.sleep(3000);
             driver.get("https://research.morningstar.com/home");
         }catch(Exception e){
             System.out.println(e.getMessage());
