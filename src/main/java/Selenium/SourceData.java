@@ -1,24 +1,14 @@
 package Selenium;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.WheelInput;
-import org.openqa.selenium.remote.CapabilityType;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.time.Duration;
 import java.util.List;
-import java.util.Map;
 
 import static java.time.Duration.*;
 
@@ -32,22 +22,11 @@ public class SourceData extends Thread {
     private String ticker;
 
     public void login() {
-        ChromeOptions options = new ChromeOptions();
-        FirefoxOptions ffOptions = new FirefoxOptions();
         EdgeOptions edgeOptions = new EdgeOptions();
         //options.addArguments("headless");
-        //options.setImplicitWaitTimeout(ofSeconds(5));
-        //ffOptions.setImplicitWaitTimeout(ofSeconds(5));
         edgeOptions.setImplicitWaitTimeout(ofSeconds(5));
-        //ffOptions.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.IGNORE);
-        edgeOptions.setUnhandledPromptBehaviour(UnexpectedAlertBehaviour.IGNORE);
-        /*DesiredCapabilities capabilities = new DesiredCapabilities();
-        capabilities.setCapability(CapabilityType.UNHANDLED_PROMPT_BEHAVIOUR, UnexpectedAlertBehaviour.IGNORE);*/
-        //driver = new ChromeDriver(options);
-        //driver = new FirefoxDriver(ffOptions);
         driver = new EdgeDriver(edgeOptions);
         driver.manage().window().maximize();
-        //driver.manage().timeouts().implicitlyWait(ofSeconds(4));
         driver.get("https://research.morningstar.com/ic/authenticate?Name=Clifton%20Park");
         WebElement cardNum = driver.findElement(By.id("password"));
         cardNum.sendKeys("1000601559668");
@@ -99,86 +78,68 @@ public class SourceData extends Thread {
             Thread.sleep(2000);
             List<WebElement> webElementList =
                     driver.findElements(By.xpath(
-        "//a[contains(@class,'mdc-security-module__name')]"
+                            "//a[contains(@class,'mdc-security-module__name')]"
                     ));
             WebElement webElement = webElementList.get(0);
             webElement.click();
+            scrollToFinancials();
+            //the first click on export gets income statement
             clickExport();
-        }catch(Exception e){
+            clickBalanceSheetButton();
+            clickExport();
+            clickCashFlowButton();
+            clickExport();
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public void clickExport(){
+    public void scrollToFinancials() {
         try {
-            System.out.println("Sleeping for 10 seconds...");
-            Thread.sleep(10000);
-            JavascriptExecutor js = (JavascriptExecutor) driver;
-
-
-            //Launch the application
-            //driver.get("https://www.browserstack.com/guide/selenium-scroll-tutorial");
-
-            //Locating element by link text and store in variable "Element"
-            //WebElement Element = driver.findElement(By.linkText("Try Selenium Testing For Free"));
-
-            //WebElement webElement = driver.findElement(By.xpath("//button[@id='salKeyStatsPopoverExport']"));
-
-            // Scrolling down the page till the element is found
-            //js.executeScript("arguments[0].scrollIntoView();", webElement);
-
-            //js.executeScript("window.scrollTo(0, document.body.scrollHeight)");
-            System.out.println("Sleeping for 10 seconds...");
-            Thread.sleep(10000);
-            //js.executeScript("window.scroll(0,1250)");
-        //js.executeAsyncScript("window.scrollBy(0,document.body.scrollHeight)");
-            //js.executeAsyncScript("alert('Appears to be scrolling that is the issue')");
-             //((JavascriptExecutor) driver).executeScript ("window.alert('Appears to be scrolling that is the issue')");
-            //Thread.sleep(5000);
-            //js.executeScript("window.scroll(0,1250)","");
-            //Thread.sleep(5000);
-            /*new Actions(driver)
-                    .scrollByAmount(0, 3000)
-                    .perform();*/
-            /*new Actions(driver)
-                    .scrollByAmount(0, 3000)
-                    .perform();*/
-
-            //Long height=(Long) js.executeScript("return document.body.scrollHeight");
-            //System.out.println(height);
-            //Thread.sleep(1000);
-            //driver.findElement(By.tagName("body")).sendKeys(Keys.END);
+            Thread.sleep(5000);
             WebElement body = driver.findElement(By.cssSelector("body"));
             WheelInput.ScrollOrigin scrollOrigin = WheelInput.ScrollOrigin.fromElement(body);
             new Actions(driver)
                     .scrollFromOrigin(scrollOrigin, 0, 2000)
                     .perform();
-
-            Thread.sleep(5000);
-
-            WebElement exportButton = driver.findElement(By.xpath("//*[@id='salEqsvFinancialsPopoverExport']"));
-            exportButton.click();
-/*            new Actions(driver)
-                    .scrollToElement(exportButton)
-                    .perform();*/
-
-            //driver.findElement(By.cssSelector("body")).sendKeys(Keys.CONTROL, Keys.END);
-
-            /*Robot robot = new Robot();
-            robot.keyPress(KeyEvent.VK_PAGE_DOWN);
-            robot.keyRelease(KeyEvent.VK_PAGE_DOWN);*/
-
-
-            //List<WebElement> webElements = driver.findElements(By.xpath("//*[@class='title-section']"));
-            List<WebElement> webElements  = driver.findElements(By.xpath("//*[@class='title-section']"));
-            //System.out.println(webElement.getText());
-            System.out.println("size: " + webElements.size());
-
-            //button aria-label="Export"
-            //webElement.click();
-        }catch (Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
+    }
+
+    public void clickExport() {
+        try {
+            Thread.sleep(5000);
+            WebElement exportButton = driver.findElement(By.xpath("//*[@id='salEqsvFinancialsPopoverExport']"));
+            exportButton.click();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void clickBalanceSheetButton() {
+        try {
+            Thread.sleep(5000);
+
+            WebElement balanceSheetButton = driver.findElement(By.xpath("//*[@id='balanceSheet']"));
+            balanceSheetButton.click();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
+    public void clickCashFlowButton() {
+        try {
+            Thread.sleep(5000);
+
+            WebElement cashFlowButton = driver.findElement(By.xpath("//*[@id='cashFlow']"));
+            cashFlowButton.click();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
 
