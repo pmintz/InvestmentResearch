@@ -17,6 +17,8 @@ import Selenium.SourceData;
 
 public class ExcelRowCopy extends RangeCopier {
 
+    //String home = System.getProperty("user.home");
+    //File file = new File(home+"/Downloads/" + fileName + ".txt");
     static String sourceFilePath = "./src/main/resources/nvda-income-statement-annual.xlsx";
     static String destinationFilePath = "./src/main/resources/MASTER COPY_copy.xlsx";
 
