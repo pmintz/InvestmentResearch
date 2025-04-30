@@ -1,15 +1,14 @@
 package Selenium;
 
 import org.openqa.selenium.*;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
-import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.WheelInput;
 
 import java.util.List;
 
+import static ExcelActions.ExcelRowCopy.copyData;
 import static java.time.Duration.*;
 
 public class SourceData extends Thread {
@@ -20,7 +19,6 @@ public class SourceData extends Thread {
 
     static WebDriver driver;
     private String ticker;
-
     public void login() {
         EdgeOptions edgeOptions = new EdgeOptions();
         //options.addArguments("headless");
@@ -71,7 +69,7 @@ public class SourceData extends Thread {
         }
     }
 
-    public void retrieveDataFromResultsPage() {
+    public void downloadAllFinancialStatements() {
         System.out.println("Results Found");
 
         try {
@@ -154,14 +152,24 @@ public class SourceData extends Thread {
 
     @Override
     public void run() {
-        enterTickerSymbol();
 
-        if (checkForResults()) {
-            retrieveDataFromResultsPage();
-            //pageRefresh();
-        } else {
-            System.out.println("No results");
-            pageRefresh();
+        try {
+            enterTickerSymbol();
+
+            if (checkForResults()) {
+                downloadAllFinancialStatements();
+                copyData();
+                //pageRefresh();
+            } else {
+                System.out.println("No results");
+                pageRefresh();
+            }
+
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+            System.out.println("There has been an error");
+            System.out.println("Closing Program");
+            System.exit(0);
         }
 
         System.out.print("Enter ticker symbol and then press \"Enter\".  Type \"close\" to exit: ");
