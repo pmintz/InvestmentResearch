@@ -29,7 +29,6 @@ public class StatementType {
         cells.put("SOURCE_COL_START", SOURCE_COL_INCOME_START);
         cells.put("SOURCE_COL_END", SOURCE_COL_INCOME_END);
 
-
         cells.put("DEST_SHEET",DEST_SHEET_INCOME);
         cells.put("DEST_ROW_START",DEST_ROW_INCOME_START);
         cells.put("DEST_ROW_END", DEST_ROW_INCOME_END);
@@ -43,7 +42,6 @@ public class StatementType {
         urls.put("Cash", "Cash Flow_Annual_As Originally Reported (1).xls");
 
         cells.get("SOURCE_SHEET");
-        System.out.println(urls.get("Income"));
 
     }
 }

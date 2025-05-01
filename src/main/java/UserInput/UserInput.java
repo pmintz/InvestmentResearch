@@ -33,7 +33,6 @@ public class UserInput {
 
                 sourceData.join();
 
-
             }
 
         } catch (Exception e) {

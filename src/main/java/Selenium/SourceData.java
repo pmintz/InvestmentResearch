@@ -19,6 +19,7 @@ public class SourceData extends Thread {
 
     static WebDriver driver;
     private String ticker;
+
     public void login() {
         EdgeOptions edgeOptions = new EdgeOptions();
         //options.addArguments("headless");
@@ -140,12 +141,6 @@ public class SourceData extends Thread {
 
     }
 
-
-    public void copySourceDataToMasterCopy() {
-
-
-    }
-
     public void closeBrowser() {
         driver.quit();
     }
@@ -165,7 +160,7 @@ public class SourceData extends Thread {
                 pageRefresh();
             }
 
-        }catch(Exception e){
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("There has been an error");
             System.out.println("Closing Program");
