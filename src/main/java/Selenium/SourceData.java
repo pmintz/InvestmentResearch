@@ -19,7 +19,6 @@ public class SourceData extends Thread {
 
     static WebDriver driver;
     private String ticker;
-
     public void login() {
         EdgeOptions edgeOptions = new EdgeOptions();
         //options.addArguments("headless");

@@ -29,7 +29,7 @@ public class ExcelRowCopy extends RangeCopier {
         StatementType.intializeData();
         Workbook destinationWorkbook = getDestinationWorkbook();
         for (String statementType : statementTypes) {
-            copyRows(getSourceWorkbook(StatementType.urls.get(statementType)),
+            copyRows(getSourceWorkbook(StatementType.filePaths.get(statementType)),
                     destinationWorkbook,
                     StatementType.cellRanges.get(statementType),
                     StatementType.cellRanges.get(statementType)

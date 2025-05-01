@@ -17,7 +17,7 @@ public class StatementType {
     static final int DEST_COL_INCOME_START = 1;
     static final int DEST_COL_INCOME_END = 12;
 
-    static Map<String, String> urls = new HashMap<>();
+    static Map<String, String> filePaths = new HashMap<>();
     static Map<String, Integer> cells = new HashMap<>();
     static Map<String,Map<String,Integer>> cellRanges = new HashMap<String, Map<String, Integer>>();
     
@@ -37,9 +37,9 @@ public class StatementType {
 
         cellRanges.put("Income", cells);
 
-        urls.put("Income", "Income Statement_Annual_As Originally Reported (1).xls");
-        urls.put("Balance", "Balance Sheet_Annual_As Originally Reported (1).xls");
-        urls.put("Cash", "Cash Flow_Annual_As Originally Reported (1).xls");
+        filePaths.put("Income", "Income Statement_Annual_As Originally Reported (1).xls");
+        filePaths.put("Balance", "Balance Sheet_Annual_As Originally Reported (1).xls");
+        filePaths.put("Cash", "Cash Flow_Annual_As Originally Reported (1).xls");
 
         cells.get("SOURCE_SHEET");
 
