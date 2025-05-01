@@ -161,9 +161,6 @@ public class SourceData extends Thread {
 
         } catch (Exception e) {
             System.out.println(e.getMessage());
-            System.out.println("There has been an error");
-            System.out.println("Closing Program");
-            System.exit(0);
         }
 
         System.out.print("Enter ticker symbol and then press \"Enter\".  Type \"close\" to exit: ");
