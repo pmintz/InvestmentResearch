@@ -1,0 +1,49 @@
+package ExcelActions;
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class StatementType {
+
+    static final int SOURCE_SHEET_INCOME = 0;
+    static final int SOURCE_ROW_INCOME_START = 0;
+    static final int SOURCE_ROW_INCOME_END = 48;
+    static final int SOURCE_COL_INCOME_START = 1;
+    static final int SOURCE_COL_INCOME_END = 12;
+
+    static final int DEST_SHEET_INCOME = 2;
+    static final int DEST_ROW_INCOME_START = 0;
+    static final int DEST_ROW_INCOME_END = 48;
+    static final int DEST_COL_INCOME_START = 1;
+    static final int DEST_COL_INCOME_END = 12;
+
+    static Map<String, String> urls = new HashMap<>();
+    static Map<String, Integer> cells = new HashMap<>();
+    static Map<String,Map<String,Integer>> cellRanges = new HashMap<String, Map<String, Integer>>();
+    
+    public static void intializeData(){
+
+        cells.put("SOURCE_SHEET",SOURCE_SHEET_INCOME);
+        cells.put("SOURCE_ROW_START",SOURCE_ROW_INCOME_START);
+        cells.put("SOURCE_ROW_END", SOURCE_ROW_INCOME_END);
+        cells.put("SOURCE_COL_START", SOURCE_COL_INCOME_START);
+        cells.put("SOURCE_COL_END", SOURCE_COL_INCOME_END);
+
+
+        cells.put("DEST_SHEET",DEST_SHEET_INCOME);
+        cells.put("DEST_ROW_START",DEST_ROW_INCOME_START);
+        cells.put("DEST_ROW_END", DEST_ROW_INCOME_END);
+        cells.put("DEST_COL_START", DEST_COL_INCOME_START);
+        cells.put("DEST_COL_END", DEST_COL_INCOME_END);
+
+        cellRanges.put("Income", cells);
+
+        urls.put("Income", "Income Statement_Annual_As Originally Reported (1).xls");
+        urls.put("Balance", "Balance Sheet_Annual_As Originally Reported (1).xls");
+        urls.put("Cash", "Cash Flow_Annual_As Originally Reported (1).xls");
+
+        cells.get("SOURCE_SHEET");
+        System.out.println(urls.get("Income"));
+
+    }
+}
