@@ -21,7 +21,7 @@ public class StatementType {
     static Map<String, Integer> cells = new HashMap<>();
     static Map<String,Map<String,Integer>> cellRanges = new HashMap<String, Map<String, Integer>>();
     
-    public static void intializeData(){
+    public static void intializeExcelData(){
 
         cells.put("SOURCE_SHEET",SOURCE_SHEET_INCOME);
         cells.put("SOURCE_ROW_START",SOURCE_ROW_INCOME_START);
@@ -40,8 +40,6 @@ public class StatementType {
         filePaths.put("Income", "Income Statement_Annual_As Originally Reported (1).xls");
         filePaths.put("Balance", "Balance Sheet_Annual_As Originally Reported (1).xls");
         filePaths.put("Cash", "Cash Flow_Annual_As Originally Reported (1).xls");
-
-        cells.get("SOURCE_SHEET");
 
     }
 }

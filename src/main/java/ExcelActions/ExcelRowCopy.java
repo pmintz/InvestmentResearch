@@ -26,12 +26,11 @@ public class ExcelRowCopy extends RangeCopier {
     }
 
     public static void copyData() throws IOException {
-        StatementType.intializeData();
+        StatementType.intializeExcelData();
         Workbook destinationWorkbook = getDestinationWorkbook();
         for (String statementType : statementTypes) {
             copyRows(getSourceWorkbook(StatementType.filePaths.get(statementType)),
                     destinationWorkbook,
-                    StatementType.cellRanges.get(statementType),
                     StatementType.cellRanges.get(statementType)
             );
         }
@@ -39,19 +38,19 @@ public class ExcelRowCopy extends RangeCopier {
     }
 
     public static void copyRows(Workbook sourceWorkbook, Workbook destinationWorkbook,
-                                Map<String, Integer> sourceMap, Map<String, Integer> destMap) throws IOException {
+                                Map<String, Integer> excelRanges) throws IOException {
 
-        Sheet sourceSheet = sourceWorkbook.getSheetAt(sourceMap.get("SOURCE_SHEET"));
-        Sheet destinationSheet = destinationWorkbook.getSheetAt(sourceMap.get("DEST_SHEET"));
+        Sheet sourceSheet = sourceWorkbook.getSheetAt(excelRanges.get("SOURCE_SHEET"));
+        Sheet destinationSheet = destinationWorkbook.getSheetAt(excelRanges.get("DEST_SHEET"));
 
         ExcelRowCopy erc = new ExcelRowCopy(sourceSheet, destinationSheet);
 
         CellRangeAddress sourceCellRangeAddress =
-                new CellRangeAddress(sourceMap.get("SOURCE_ROW_START"), sourceMap.get("SOURCE_ROW_END"),
-                        sourceMap.get("SOURCE_COL_START"), sourceMap.get("SOURCE_COL_END"));
+                new CellRangeAddress(excelRanges.get("SOURCE_ROW_START"), excelRanges.get("SOURCE_ROW_END"),
+                        excelRanges.get("SOURCE_COL_START"), excelRanges.get("SOURCE_COL_END"));
         CellRangeAddress destinationCellRangeAddress =
-                new CellRangeAddress(destMap.get("DEST_ROW_START"), destMap.get("DEST_ROW_END"),
-                        destMap.get("DEST_COL_START"), destMap.get("DEST_COL_END"));
+                new CellRangeAddress(excelRanges.get("DEST_ROW_START"), excelRanges.get("DEST_ROW_END"),
+                        excelRanges.get("DEST_COL_START"), excelRanges.get("DEST_COL_END"));
         erc.copyRange(sourceCellRangeAddress, destinationCellRangeAddress);
 
 
