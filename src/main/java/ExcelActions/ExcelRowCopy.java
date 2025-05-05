@@ -57,6 +57,9 @@ public class ExcelRowCopy extends RangeCopier {
 
         try (FileOutputStream outputStream = new FileOutputStream(destinationFilePath)) {
             destinationWorkbook.write(outputStream);
+        }catch(Exception e){
+            System.out.println("Statement not copied");
+            System.out.println(e.getMessage());
         }
 
         System.out.println("Statement copied successfully!");
