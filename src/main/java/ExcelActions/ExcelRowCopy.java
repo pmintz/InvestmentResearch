@@ -16,7 +16,7 @@ public class ExcelRowCopy extends RangeCopier {
     static String[] statementTypes = {"Income", "Balance", "Cash"};
     static String home = System.getProperty("user.home");
     static String sourceBaseFilePath = home + "\\Downloads\\";
-    static String destinationFilePath = "./src/main/resources/MASTER COPY_copy.xls";
+    static String destinationFilePath = "./src/main/resources/MASTER COPY 2025.xls";
     public ExcelRowCopy(Sheet sheet) {
         super(sheet);
     }
@@ -31,37 +31,38 @@ public class ExcelRowCopy extends RangeCopier {
         for (String statementType : statementTypes) {
             copyRows(getSourceWorkbook(StatementType.filePaths.get(statementType)),
                     destinationWorkbook,
-                    StatementType.cellRanges.get(statementType)
+                    StatementType.cellRanges.get(statementType),
+                    statementType
             );
         }
 
     }
 
     public static void copyRows(Workbook sourceWorkbook, Workbook destinationWorkbook,
-                                Map<String, Integer> excelRanges) throws IOException {
+                                Map<String, Integer> excelRange, String statementType) throws IOException {
 
-        Sheet sourceSheet = sourceWorkbook.getSheetAt(excelRanges.get("SOURCE_SHEET"));
-        Sheet destinationSheet = destinationWorkbook.getSheetAt(excelRanges.get("DEST_SHEET"));
+        Sheet sourceSheet = sourceWorkbook.getSheetAt(excelRange.get("SOURCE_SHEET"));
+        Sheet destinationSheet = destinationWorkbook.getSheetAt(excelRange.get("DEST_SHEET"));
 
         ExcelRowCopy erc = new ExcelRowCopy(sourceSheet, destinationSheet);
 
         CellRangeAddress sourceCellRangeAddress =
-                new CellRangeAddress(excelRanges.get("SOURCE_ROW_START"), excelRanges.get("SOURCE_ROW_END"),
-                        excelRanges.get("SOURCE_COL_START"), excelRanges.get("SOURCE_COL_END"));
+                new CellRangeAddress(excelRange.get("SOURCE_ROW_START"), excelRange.get("SOURCE_ROW_END"),
+                        excelRange.get("SOURCE_COL_START"), excelRange.get("SOURCE_COL_END"));
         CellRangeAddress destinationCellRangeAddress =
-                new CellRangeAddress(excelRanges.get("DEST_ROW_START"), excelRanges.get("DEST_ROW_END"),
-                        excelRanges.get("DEST_COL_START"), excelRanges.get("DEST_COL_END"));
+                new CellRangeAddress(excelRange.get("DEST_ROW_START"), excelRange.get("DEST_ROW_END"),
+                        excelRange.get("DEST_COL_START"), excelRange.get("DEST_COL_END"));
         erc.copyRange(sourceCellRangeAddress, destinationCellRangeAddress);
 
 
         try (FileOutputStream outputStream = new FileOutputStream(destinationFilePath)) {
             destinationWorkbook.write(outputStream);
         }catch(Exception e){
-            System.out.println("Statement not copied");
+            System.out.println(statementType + " statement not copied!");
             System.out.println(e.getMessage());
         }
 
-        System.out.println("Statement copied successfully!");
+        System.out.println(statementType + " statement copied successfully!");
 
 
     }

@@ -56,6 +56,7 @@ public class SourceData extends Thread {
             driver.findElement(By.className("search-us-securities__hit"));
             return true;
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return false;
         }
     }
@@ -153,13 +154,14 @@ public class SourceData extends Thread {
             if (checkForResults()) {
                 downloadAllFinancialStatements();
                 copyData();
-                //pageRefresh();
+                pageRefresh();
             } else {
                 System.out.println("No results");
                 pageRefresh();
             }
 
         } catch (Exception e) {
+            System.out.println("SourceData run method has thrown an error");
             System.out.println(e.getMessage());
         }
 

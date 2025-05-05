@@ -10,13 +10,10 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        /*SourceData sourceData = new SourceData();
+        SourceData sourceData = new SourceData();
         sourceData.login();
         UserInput ui = new UserInput();
-        ui.promptUser();*/
-
-        //ExcelRowCopy.getSourceWorkbook("Income");
-        ExcelRowCopy.copyData();
+        ui.promptUser();
 
     }
 
