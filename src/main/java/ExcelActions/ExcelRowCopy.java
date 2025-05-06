@@ -70,6 +70,7 @@ public class ExcelRowCopy extends RangeCopier {
     public static HSSFWorkbook getSourceWorkbook(String path) {
         String sourceFilePath = sourceBaseFilePath + path;
         try (FileInputStream sourceFile = new FileInputStream(sourceFilePath)) {
+            Thread.sleep(2000);
             return new HSSFWorkbook(sourceFile);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -82,6 +83,7 @@ public class ExcelRowCopy extends RangeCopier {
 
     public static Workbook getDestinationWorkbook() {
         try (FileInputStream sourceFile = new FileInputStream(destinationFilePath)) {
+            Thread.sleep(2000);
             return new HSSFWorkbook(sourceFile);
         } catch (Exception e) {
             System.out.println(e.getMessage());
