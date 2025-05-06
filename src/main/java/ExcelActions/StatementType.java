@@ -5,49 +5,49 @@ import java.util.Map;
 
 public class StatementType {
 
-    static final int SOURCE_SHEET_INCOME = 0;
-    static final int SOURCE_ROW_INCOME_START = 0;
-    static final int SOURCE_ROW_INCOME_END = 100;
-    static final int SOURCE_COL_INCOME_START = 0;
-    static final int SOURCE_COL_INCOME_END = 12;
+     final int SOURCE_SHEET_INCOME = 0;
+     final int SOURCE_ROW_INCOME_START = 0;
+     final int SOURCE_ROW_INCOME_END = 100;
+     final int SOURCE_COL_INCOME_START = 0;
+     final int SOURCE_COL_INCOME_END = 12;
 
-    static final int DEST_SHEET_INCOME = 1;
-    static final int DEST_ROW_INCOME_START = 0;
-    static final int DEST_ROW_INCOME_END = 100;
-    static final int DEST_COL_INCOME_START = 0;
-    static final int DEST_COL_INCOME_END = 12;
+     final int DEST_SHEET_INCOME = 1;
+     final int DEST_ROW_INCOME_START = 0;
+     final int DEST_ROW_INCOME_END = 100;
+     final int DEST_COL_INCOME_START = 0;
+     final int DEST_COL_INCOME_END = 12;
 
-    static final int SOURCE_SHEET_BALANCE_SHEET = 0;
-    static final int SOURCE_ROW_BALANCE_SHEET_START = 0;
-    static final int SOURCE_ROW_BALANCE_SHEET_END = 150;
-    static final int SOURCE_COL_BALANCE_SHEET_START = 0;
-    static final int SOURCE_COL_BALANCE_SHEET_END = 12;
+     final int SOURCE_SHEET_BALANCE_SHEET = 0;
+     final int SOURCE_ROW_BALANCE_SHEET_START = 0;
+     final int SOURCE_ROW_BALANCE_SHEET_END = 150;
+     final int SOURCE_COL_BALANCE_SHEET_START = 0;
+     final int SOURCE_COL_BALANCE_SHEET_END = 12;
 
-    static final int DEST_SHEET_BALANCE_SHEET = 2;
-    static final int DEST_ROW_BALANCE_SHEET_START = 0;
-    static final int DEST_ROW_BALANCE_SHEET_END = 150;
-    static final int DEST_COL_BALANCE_SHEET_START = 0;
-    static final int DEST_COL_BALANCE_SHEET_END = 12;
+     final int DEST_SHEET_BALANCE_SHEET = 2;
+     final int DEST_ROW_BALANCE_SHEET_START = 0;
+     final int DEST_ROW_BALANCE_SHEET_END = 150;
+     final int DEST_COL_BALANCE_SHEET_START = 0;
+     final int DEST_COL_BALANCE_SHEET_END = 12;
 
-    static final int SOURCE_SHEET_CASH_FLOW = 0;
-    static final int SOURCE_ROW_CASH_FLOW_START = 0;
-    static final int SOURCE_ROW_CASH_FLOW_END = 150;
-    static final int SOURCE_COL_CASH_FLOW_START = 0;
-    static final int SOURCE_COL_CASH_FLOW_END = 12;
+     final int SOURCE_SHEET_CASH_FLOW = 0;
+     final int SOURCE_ROW_CASH_FLOW_START = 0;
+     final int SOURCE_ROW_CASH_FLOW_END = 150;
+     final int SOURCE_COL_CASH_FLOW_START = 0;
+     final int SOURCE_COL_CASH_FLOW_END = 12;
 
-    static final int DEST_SHEET_CASH_FLOW = 3;
-    static final int DEST_ROW_CASH_FLOW_START = 0;
-    static final int DEST_ROW_CASH_FLOW_END = 150;
-    static final int DEST_COL_CASH_FLOW_START = 0;
-    static final int DEST_COL_CASH_FLOW_END = 12;
+     final int DEST_SHEET_CASH_FLOW = 3;
+     final int DEST_ROW_CASH_FLOW_START = 0;
+     final int DEST_ROW_CASH_FLOW_END = 150;
+     final int DEST_COL_CASH_FLOW_START = 0;
+     final int DEST_COL_CASH_FLOW_END = 12;
 
-    static Map<String, String> filePaths = new HashMap<>();
-    static Map<String, Integer> incomeCells = new HashMap<>();
-    static Map<String, Integer> balanceSheetCells = new HashMap<>();
-    static Map<String, Integer> cashFlowCells = new HashMap<>();
-    static Map<String,Map<String,Integer>> cellRanges = new HashMap<String, Map<String, Integer>>();
+     Map<String, String> filePaths = new HashMap<>();
+     Map<String, Integer> incomeCells = new HashMap<>();
+    Map<String, Integer> balanceSheetCells = new HashMap<>();
+     Map<String, Integer> cashFlowCells = new HashMap<>();
+     Map<String,Map<String,Integer>> cellRanges = new HashMap<String, Map<String, Integer>>();
     
-    public static void intializeExcelData(){
+    public StatementType(){
 
         incomeCells.put("SOURCE_SHEET",SOURCE_SHEET_INCOME);
         incomeCells.put("SOURCE_ROW_START",SOURCE_ROW_INCOME_START);
@@ -95,5 +95,45 @@ public class StatementType {
         filePaths.put("Balance", "Balance Sheet_Annual_As Originally Reported.xls");
         filePaths.put("Cash", "Cash Flow_Annual_As Originally Reported.xls");
 
+    }
+
+    public Map<String, String> getFilePaths() {
+        return filePaths;
+    }
+
+    public void setFilePaths(Map<String, String> filePaths) {
+        this.filePaths = filePaths;
+    }
+
+    public Map<String, Integer> getIncomeCells() {
+        return incomeCells;
+    }
+
+    public void setIncomeCells(Map<String, Integer> incomeCells) {
+        this.incomeCells = incomeCells;
+    }
+
+    public Map<String, Integer> getBalanceSheetCells() {
+        return balanceSheetCells;
+    }
+
+    public void setBalanceSheetCells(Map<String, Integer> balanceSheetCells) {
+        this.balanceSheetCells = balanceSheetCells;
+    }
+
+    public Map<String, Integer> getCashFlowCells() {
+        return cashFlowCells;
+    }
+
+    public void setCashFlowCells(Map<String, Integer> cashFlowCells) {
+        this.cashFlowCells = cashFlowCells;
+    }
+
+    public Map<String, Map<String, Integer>> getCellRanges() {
+        return cellRanges;
+    }
+
+    public void setCellRanges(Map<String, Map<String, Integer>> cellRanges) {
+        this.cellRanges = cellRanges;
     }
 }

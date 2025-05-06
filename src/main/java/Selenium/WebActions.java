@@ -6,12 +6,12 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.WheelInput;
 
+import java.io.File;
 import java.util.List;
 
-import static ExcelActions.ExcelRowCopy.copyData;
 import static java.time.Duration.*;
 
-public class SourceData extends Thread {
+public class WebActions extends Thread {
 
     //youtube
     //Java Testing with Selenium Course
@@ -19,6 +19,7 @@ public class SourceData extends Thread {
 
     static WebDriver driver;
     private String ticker;
+
     public void login() {
         EdgeOptions edgeOptions = new EdgeOptions();
         //options.addArguments("headless");
@@ -99,7 +100,7 @@ public class SourceData extends Thread {
             WebElement body = driver.findElement(By.cssSelector("body"));
             WheelInput.ScrollOrigin scrollOrigin = WheelInput.ScrollOrigin.fromElement(body);
             new Actions(driver)
-                    .scrollFromOrigin(scrollOrigin, 0, 2000)
+                    .scrollFromOrigin(scrollOrigin, 0, 2150)
                     .perform();
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -143,30 +144,6 @@ public class SourceData extends Thread {
 
     public void closeBrowser() {
         driver.quit();
-    }
-
-    @Override
-    public void run() {
-
-        try {
-            enterTickerSymbol();
-
-            if (checkForResults()) {
-                downloadAllFinancialStatements();
-                copyData();
-                pageRefresh();
-            } else {
-                System.out.println("No results");
-                pageRefresh();
-            }
-
-        } catch (Exception e) {
-            System.out.println("SourceData run method has thrown an error");
-            System.out.println(e.getMessage());
-        }
-
-        System.out.print("Enter ticker symbol and then press \"Enter\".  Type \"close\" to exit: ");
-
     }
 
     public String getTicker() {

@@ -1,14 +1,16 @@
 package UserInput;
 
-import Selenium.SourceData;
+import ExcelActions.WorkbookManagement;
+import Selenium.WebActions;
 
 import java.util.Scanner;
 
-public class UserInput {
+public class UserInput extends Thread {
 
     String readString;
 
-    SourceData sourceData;
+    WorkbookManagement workbookManagement = new WorkbookManagement();
+    WebActions webActions = new WebActions();
 
     public void promptUser() {
 
@@ -19,19 +21,19 @@ public class UserInput {
             while (scanner.hasNextLine()) {
 
                 readString = scanner.nextLine();
-                sourceData = new SourceData();
+                webActions = new WebActions();
 
                 if (readString.equalsIgnoreCase("close")) {
                     System.out.println("Exiting program...");
-                    sourceData.closeBrowser();
+                    webActions.closeBrowser();
                     break;
                 } else {
                     System.out.println("Gathering data");
-                    sourceData.setTicker(readString);
-                    sourceData.start();
+                    webActions.setTicker(readString);
+                    start();
                 }
 
-                sourceData.join();
+                join();
 
             }
 
@@ -41,5 +43,31 @@ public class UserInput {
 
 
     }
+
+    @Override
+    public void run() {
+
+        try {
+            webActions.enterTickerSymbol();
+
+            if (webActions.checkForResults()) {
+                webActions.downloadAllFinancialStatements();
+                workbookManagement.copyData();
+                workbookManagement.removeFinancialStatementsFromDownloadFolder();
+                webActions.pageRefresh();
+            } else {
+                System.out.println("No results");
+                webActions.pageRefresh();
+            }
+
+        } catch (Exception e) {
+            System.out.println("SourceData run method has thrown an error");
+            System.out.println(e.getMessage());
+        }
+
+        System.out.print("Enter ticker symbol and then press \"Enter\".  Type \"close\" to exit: ");
+
+    }
+
 
 }

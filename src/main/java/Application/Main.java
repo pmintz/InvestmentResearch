@@ -1,20 +1,22 @@
 package Application;
 
-import ExcelActions.ExcelRowCopy;
-import Selenium.SourceData;
+import java.io.IOException;
+
+import Selenium.WebActions;
 import UserInput.UserInput;
 
-import java.io.IOException;
 
 public class Main {
 
+
     public static void main(String[] args) throws IOException {
 
-        SourceData sourceData = new SourceData();
-        sourceData.login();
+        WebActions webActions = new WebActions();
+        webActions.login();
         UserInput ui = new UserInput();
         ui.promptUser();
 
     }
+
 
 }
