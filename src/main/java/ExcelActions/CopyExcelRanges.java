@@ -35,8 +35,6 @@ public class CopyExcelRanges extends RangeCopier {
                         excelRange.get("DEST_COL_START"), excelRange.get("DEST_COL_END"));
         erc.copyRange(sourceCellRangeAddress, destinationCellRangeAddress);
 
-        // return destinationWorkbook;
-
     }
 
     @Override
