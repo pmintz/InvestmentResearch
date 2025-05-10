@@ -32,6 +32,16 @@ public class WebActions extends Thread {
         submitButton.click();
     }
 
+    public void yahooHomePage(){
+        try {
+            Thread.sleep(5000);
+            driver.get("https://www.yahoo.com/");
+        }catch(Exception e){
+            System.out.println("error getting yahoo homepage");
+            System.out.println(e.getMessage());
+        }
+    }
+
 
     public void enterTickerSymbol() {
         WebElement searchTicker = driver.findElement(By.className("mdc-search-field__input"));

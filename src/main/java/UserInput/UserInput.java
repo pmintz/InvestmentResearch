@@ -54,7 +54,8 @@ public class UserInput extends Thread {
                 webActions.downloadAllFinancialStatements();
                 workbookManagement.copyData();
                 workbookManagement.removeFinancialStatementsFromDownloadFolder();
-                webActions.pageRefresh();
+                webActions.yahooHomePage();
+                //webActions.pageRefresh();
             } else {
                 System.out.println("No results");
                 webActions.pageRefresh();
