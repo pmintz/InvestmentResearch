@@ -6,7 +6,6 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.WheelInput;
 
-import java.io.File;
 import java.util.List;
 
 import static java.time.Duration.*;
@@ -42,7 +41,7 @@ public class WebActions extends Thread {
 
     public void clickUSSecuritiesLink(String ticker) {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
             WebElement usSecuritiesLink = driver.findElement(By.cssSelector("a[href='/search/us-securities?query=" + ticker + "']"));
             usSecuritiesLink.click();
         } catch (Exception e) {
@@ -53,7 +52,7 @@ public class WebActions extends Thread {
     public boolean checkForResults() {
         clickUSSecuritiesLink(ticker);
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
             driver.findElement(By.className("search-us-securities__hit"));
             return true;
         } catch (Exception e) {
@@ -64,7 +63,7 @@ public class WebActions extends Thread {
 
     public void pageRefresh() {
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
             driver.get("https://research.morningstar.com/home");
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -75,7 +74,7 @@ public class WebActions extends Thread {
         System.out.println("Results Found");
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
             List<WebElement> webElementList =
                     driver.findElements(By.xpath(
                             "//a[contains(@class,'mdc-security-module__name')]"
@@ -100,7 +99,7 @@ public class WebActions extends Thread {
             WebElement body = driver.findElement(By.cssSelector("body"));
             WheelInput.ScrollOrigin scrollOrigin = WheelInput.ScrollOrigin.fromElement(body);
             new Actions(driver)
-                    .scrollFromOrigin(scrollOrigin, 0, 2150)
+                    .scrollFromOrigin(scrollOrigin, 0, 2450)
                     .perform();
         } catch (Exception e) {
             System.out.println(e.getMessage());

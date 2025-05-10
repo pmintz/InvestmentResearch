@@ -33,7 +33,7 @@ public class WorkbookManagement {
     public static HSSFWorkbook getSourceWorkbook(String path) {
         String sourceFilePath = sourceBaseFilePath + path;
         try (FileInputStream sourceFile = new FileInputStream(sourceFilePath)) {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
             return new HSSFWorkbook(sourceFile);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -46,7 +46,7 @@ public class WorkbookManagement {
 
     public static Workbook getDestinationWorkbook() {
         try (FileInputStream sourceFile = new FileInputStream(destinationFilePath)) {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
             return new HSSFWorkbook(sourceFile);
         } catch (Exception e) {
             System.out.println(e.getMessage());
@@ -60,7 +60,7 @@ public class WorkbookManagement {
     public static void writeToDestinationWorkbook(Workbook destinationWorkbook, String statementType) {
 
         try (FileOutputStream outputStream = new FileOutputStream(destinationFilePath)) {
-            Thread.sleep(2000);
+            Thread.sleep(5000);
             destinationWorkbook.write(outputStream);
         } catch (Exception e) {
             System.out.println(statementType + " statement not copied!");
@@ -72,6 +72,8 @@ public class WorkbookManagement {
 
     public void removeFinancialStatementsFromDownloadFolder() {
         try {
+            Thread.sleep(5000);
+            System.out.println();
             for (String statementType : statementTypes) {
                 String path = statementTypeObj.getFilePaths().get(statementType);
                 String sourceFilePath = sourceBaseFilePath + path;
