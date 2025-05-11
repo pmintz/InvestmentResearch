@@ -19,29 +19,26 @@ public class WebActions extends Thread {
     static WebDriver driver;
     private String ticker;
 
-    public void login() {
+    public WebActions(){
         EdgeOptions edgeOptions = new EdgeOptions();
         //options.addArguments("headless");
         edgeOptions.setImplicitWaitTimeout(ofSeconds(5));
         driver = new EdgeDriver(edgeOptions);
         driver.manage().window().maximize();
+    }
+
+    public void morningstarLogin() {
+        //EdgeOptions edgeOptions = new EdgeOptions();
+        ////options.addArguments("headless");
+        //edgeOptions.setImplicitWaitTimeout(ofSeconds(5));
+        //driver = new EdgeDriver(edgeOptions);
+        //driver.manage().window().maximize();
         driver.get("https://research.morningstar.com/ic/authenticate?Name=Clifton%20Park");
         WebElement cardNum = driver.findElement(By.id("password"));
         cardNum.sendKeys("1000601559668");
         WebElement submitButton = driver.findElement(By.id("submit"));
         submitButton.click();
     }
-
-    public void yahooHomePage(){
-        try {
-            Thread.sleep(5000);
-            driver.get("https://www.yahoo.com/");
-        }catch(Exception e){
-            System.out.println("error getting yahoo homepage");
-            System.out.println(e.getMessage());
-        }
-    }
-
 
     public void enterTickerSymbol() {
         WebElement searchTicker = driver.findElement(By.className("mdc-search-field__input"));
@@ -149,6 +146,26 @@ public class WebActions extends Thread {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    public void yahooHomePage(){
+        try {
+            Thread.sleep(5000);
+            driver.get("https://www.yahoo.com/");
+        }catch(Exception e){
+            System.out.println("error getting yahoo homepage");
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void clickYahooFinancialLink() {
+        try {
+            Thread.sleep(5000);
+            WebElement yahooFinanceLink = driver.findElement(By.cssSelector("a[href='https://finance.yahoo.com/'"));
+            yahooFinanceLink.click();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     public void closeBrowser() {
