@@ -164,8 +164,22 @@ public class WebActions extends Thread {
             WebElement yahooFinanceLink = driver.findElement(By.cssSelector("a[href='https://finance.yahoo.com/'"));
             yahooFinanceLink.click();
         } catch (Exception e) {
+            System.out.println("error clicking Yahoo Finance link");
             System.out.println(e.getMessage());
         }
+    }
+
+    public void enterTickerYahooFinancialSearchBox(){
+        try {
+            Thread.sleep(5000);
+            WebElement searchBox = driver.findElement(By.id("ybar-sbq"));
+            searchBox.sendKeys(ticker);
+            WebElement searchButton = driver.findElement(By.id("ybar-search"));
+            searchButton.click();
+        }catch(Exception e){
+            System.out.println("error clicking Yahoo finance Search Box");
+        }
+
     }
 
     public void closeBrowser() {
