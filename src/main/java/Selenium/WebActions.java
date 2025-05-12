@@ -182,6 +182,40 @@ public class WebActions extends Thread {
 
     }
 
+    public void clickYahooHistoricalLink() {
+        try {
+            Thread.sleep(5000);
+            WebElement yahooFinanceLink = driver.findElement(By.cssSelector("a[href='/quote/XOM/history/'"));
+            yahooFinanceLink.click();
+        } catch (Exception e) {
+            System.out.println("error clicking Yahoo Finance link");
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //XPath = //tagname[@Attribute=’Value’]
+    public void clickDailyDropDown(){
+        try {
+            Thread.sleep(5000);
+            WebElement dropDown = driver.findElement(By.xpath("//button[@title='Daily']"));
+            dropDown.click();
+        } catch (Exception e) {
+            System.out.println("error clicking Yahoo Finance link");
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void selectMontly(){
+        try {
+            Thread.sleep(5000);
+            WebElement monthlySelection = driver.findElement(By.xpath("//div[@data-value='1mo']"));
+            monthlySelection.click();
+        } catch (Exception e) {
+            System.out.println("error clicking Yahoo Finance link");
+            System.out.println(e.getMessage());
+        }
+    }
+
     public void closeBrowser() {
         driver.quit();
     }

@@ -62,7 +62,7 @@ public class UserInput extends Thread {
             }
 
         } catch (Exception e) {
-            System.out.println("SourceData run method has thrown an error");
+            System.out.println(" run method has thrown an error");
             System.out.println(e.getMessage());
         }
 
