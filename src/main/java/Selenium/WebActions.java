@@ -6,7 +6,10 @@ import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.WheelInput;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static java.time.Duration.*;
 
@@ -254,6 +257,28 @@ public class WebActions extends Thread {
             System.out.println(e.getMessage());
         }
 
+    }
+
+
+    public Map<String, List<String>> readTable(){
+
+        Map<String, List<String>> objTable = new HashMap<>();
+        try {
+            Thread.sleep(5000);
+            List<WebElement> objRows = driver.findElements(By.cssSelector("tr.yf-1jecxey"));
+            int MAX_ROWS = 200;
+            for (int iCount = 0; iCount < MAX_ROWS; iCount++) {
+                List<WebElement> objCol = objRows.get(iCount).findElements(By.cssSelector("td.yf-1jecxey"));
+                List<String> columns = new ArrayList<>();
+                for (int col = 0; col < objCol.size(); col++) {
+                    columns.add(objCol.get(col).getText());
+                }
+                objTable.put(String.valueOf(iCount), columns);
+            }
+        }catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return objTable;
     }
 
     public void closeBrowser() {

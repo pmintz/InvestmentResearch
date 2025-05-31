@@ -26,6 +26,7 @@ public class Main {
         webActions.selectMonthly();
         webActions.clickDateRangeDropDown();
         webActions.clickMaxButton();
+        webActions.readTable();
 
     }
 
