@@ -193,6 +193,20 @@ public class WebActions extends Thread {
         }
     }
 
+    public void scrollToHistoricalDropDown() {
+        try {
+            Thread.sleep(5000);
+            WebElement body = driver.findElement(By.cssSelector("body"));
+            WheelInput.ScrollOrigin scrollOrigin = WheelInput.ScrollOrigin.fromElement(body);
+            new Actions(driver)
+                    .scrollFromOrigin(scrollOrigin, 0, 250)
+                    .perform();
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
+    }
+
     //XPath = //tagname[@Attribute=’Value’]
     public void clickDailyDropDown(){
         try {
@@ -212,6 +226,29 @@ public class WebActions extends Thread {
             monthlySelection.click();
         } catch (Exception e) {
             System.out.println("error clicking Yahoo Finance link");
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //element = driver.find_element(By.CSS_SELECTOR, ".specific-class")
+    public void selectDateRangeDropDown(){
+        try {
+            Thread.sleep(5000);
+            WebElement monthlySelection = driver.findElement(By.cssSelector(".specific-class"));
+            monthlySelection.click();
+        } catch (Exception e) {
+            System.out.println("error clicking Date Range drop down");
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void selectMax(){
+        try {
+            Thread.sleep(5000);
+            WebElement monthlySelection = driver.findElement(By.cssSelector(".specific-class"));
+            monthlySelection.click();
+        } catch (Exception e) {
+            System.out.println("error clicking Max");
             System.out.println(e.getMessage());
         }
     }

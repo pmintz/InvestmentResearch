@@ -1,4 +1,4 @@
-package ExcelActions;
+package EXCEL;
 
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.RangeCopier;
@@ -9,12 +9,12 @@ import org.apache.poi.ss.util.CellRangeAddress;
 import java.io.IOException;
 import java.util.Map;
 
-public class CopyExcelRanges extends RangeCopier {
-    public CopyExcelRanges(Sheet sheet) {
+public class ExcelActions extends RangeCopier {
+    public ExcelActions(Sheet sheet) {
         super(sheet);
     }
 
-    public CopyExcelRanges(Sheet sourceSheet, Sheet destSheet) {
+    public ExcelActions(Sheet sourceSheet, Sheet destSheet) {
         super(sourceSheet, destSheet);
     }
 
@@ -25,7 +25,7 @@ public class CopyExcelRanges extends RangeCopier {
         Sheet sourceSheet = sourceWorkbook.getSheetAt(excelRange.get("SOURCE_SHEET"));
         Sheet destinationSheet = destinationWorkbook.getSheetAt(excelRange.get("DEST_SHEET"));
 
-        CopyExcelRanges erc = new CopyExcelRanges(sourceSheet, destinationSheet);
+        ExcelActions erc = new ExcelActions(sourceSheet, destinationSheet);
 
         CellRangeAddress sourceCellRangeAddress =
                 new CellRangeAddress(excelRange.get("SOURCE_ROW_START"), excelRange.get("SOURCE_ROW_END"),

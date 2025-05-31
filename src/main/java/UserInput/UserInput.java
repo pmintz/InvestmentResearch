@@ -1,6 +1,6 @@
 package UserInput;
 
-import ExcelActions.WorkbookManagement;
+import EXCEL.WorkbookManagement;
 import Selenium.WebActions;
 
 import java.util.Scanner;

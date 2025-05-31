@@ -22,6 +22,7 @@ public class Main {
         webActions.setTicker("XOM");
         webActions.enterTickerYahooFinancialSearchBox();
         webActions.clickYahooHistoricalLink();
+        webActions.scrollToHistoricalDropDown();
         webActions.clickDailyDropDown();
         webActions.selectMontly();
 

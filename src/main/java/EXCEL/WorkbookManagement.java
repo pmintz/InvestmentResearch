@@ -1,4 +1,4 @@
-package ExcelActions;
+package EXCEL;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -8,7 +8,7 @@ import java.io.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 
-import static ExcelActions.CopyExcelRanges.*;
+import static EXCEL.ExcelActions.*;
 
 public class WorkbookManagement {
     static String home = System.getProperty("user.home");
