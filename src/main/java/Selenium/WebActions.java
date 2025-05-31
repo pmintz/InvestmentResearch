@@ -219,7 +219,7 @@ public class WebActions extends Thread {
         }
     }
 
-    public void selectMontly(){
+    public void selectMonthly(){
         try {
             Thread.sleep(5000);
             WebElement monthlySelection = driver.findElement(By.xpath("//div[@data-value='1mo']"));
@@ -230,27 +230,30 @@ public class WebActions extends Thread {
         }
     }
 
-    //element = driver.find_element(By.CSS_SELECTOR, ".specific-class")
-    public void selectDateRangeDropDown(){
+    public void clickDateRangeDropDown(){
+
         try {
             Thread.sleep(5000);
-            WebElement monthlySelection = driver.findElement(By.cssSelector(".specific-class"));
-            monthlySelection.click();
+            WebElement dateRangeDropDown = driver.findElement(By.xpath("//span[@class='label yf-1th5n0r']"));
+            dateRangeDropDown.click();
         } catch (Exception e) {
-            System.out.println("error clicking Date Range drop down");
+            System.out.println("error clicking Yahoo Finance link");
             System.out.println(e.getMessage());
         }
+
     }
 
-    public void selectMax(){
+    public void clickMaxButton(){
+
         try {
             Thread.sleep(5000);
-            WebElement monthlySelection = driver.findElement(By.cssSelector(".specific-class"));
-            monthlySelection.click();
+            WebElement maxButton = driver.findElement(By.xpath("//*[text()='Max']"));
+            maxButton.click();
         } catch (Exception e) {
-            System.out.println("error clicking Max");
+            System.out.println("error clicking Yahoo Finance link");
             System.out.println(e.getMessage());
         }
+
     }
 
     public void closeBrowser() {

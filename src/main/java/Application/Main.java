@@ -3,7 +3,6 @@ package Application;
 import java.io.IOException;
 
 import Selenium.WebActions;
-import UserInput.UserInput;
 
 
 public class Main {
@@ -24,7 +23,9 @@ public class Main {
         webActions.clickYahooHistoricalLink();
         webActions.scrollToHistoricalDropDown();
         webActions.clickDailyDropDown();
-        webActions.selectMontly();
+        webActions.selectMonthly();
+        webActions.clickDateRangeDropDown();
+        webActions.clickMaxButton();
 
     }
 
