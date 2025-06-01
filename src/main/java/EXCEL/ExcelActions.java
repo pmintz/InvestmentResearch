@@ -1,12 +1,10 @@
 package EXCEL;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.RangeCopier;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 public class ExcelActions extends RangeCopier {
@@ -35,6 +33,19 @@ public class ExcelActions extends RangeCopier {
                         excelRange.get("DEST_COL_START"), excelRange.get("DEST_COL_END"));
         erc.copyRange(sourceCellRangeAddress, destinationCellRangeAddress);
 
+    }
+
+    public static void insertRows(Sheet destSheet, List<List<String>> rows) {
+        for (int rowIndexToInsert = 0; rowIndexToInsert < rows.size(); rowIndexToInsert++){
+            int cellIdx = 0;
+            Row destRow = destSheet.createRow(rowIndexToInsert);
+            List<String> row = rows.get(rowIndexToInsert);
+            for (String cell : row) {
+                Cell destCell = destRow.createCell(cellIdx);
+                destCell.setCellValue(cell);
+                cellIdx++;
+            }
+        }
     }
 
     @Override

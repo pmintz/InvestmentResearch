@@ -1,12 +1,15 @@
 package EXCEL;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 
 import java.io.*;
 
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
 import static EXCEL.ExcelActions.*;
 
@@ -28,6 +31,12 @@ public class WorkbookManagement {
             writeToDestinationWorkbook(destinationWorkbook, statementType);
         }
 
+    }
+
+    public void insertData(List<List<String>> rows){
+        Workbook destinationWorkbook = getDestinationWorkbook();
+        Sheet destSheet = destinationWorkbook.getSheetAt(7);
+        insertRows(destSheet, rows);
     }
 
     public static HSSFWorkbook getSourceWorkbook(String path) {

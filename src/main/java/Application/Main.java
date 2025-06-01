@@ -1,7 +1,10 @@
 package Application;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.Map;
 
+import EXCEL.WorkbookManagement;
 import Selenium.WebActions;
 
 
@@ -26,7 +29,9 @@ public class Main {
         webActions.selectMonthly();
         webActions.clickDateRangeDropDown();
         webActions.clickMaxButton();
-        webActions.readTable();
+        List<List<String>> objTable = webActions.readTable();
+        WorkbookManagement wbm = new WorkbookManagement();
+        wbm.insertData(objTable);
 
     }
 

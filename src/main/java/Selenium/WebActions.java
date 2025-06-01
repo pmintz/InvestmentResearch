@@ -260,9 +260,9 @@ public class WebActions extends Thread {
     }
 
 
-    public Map<String, List<String>> readTable(){
+    public List<List<String>> readTable(){
 
-        Map<String, List<String>> objTable = new HashMap<>();
+        List<List<String>> objTable = new ArrayList<>();
         try {
             Thread.sleep(5000);
             List<WebElement> objRows = driver.findElements(By.cssSelector("tr.yf-1jecxey"));
@@ -273,7 +273,7 @@ public class WebActions extends Thread {
                 for (int col = 0; col < objCol.size(); col++) {
                     columns.add(objCol.get(col).getText());
                 }
-                objTable.put(String.valueOf(iCount), columns);
+                objTable.add(columns);
             }
         }catch(Exception e){
             System.out.println(e.getMessage());
