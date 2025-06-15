@@ -21,7 +21,7 @@ public class Main {
         WebActions webActions = new WebActions();
         webActions.yahooHomePage();
         webActions.clickYahooFinancialLink();
-        webActions.setTicker("XOM");
+        webActions.setTicker("GOOGL");
         webActions.enterTickerYahooFinancialSearchBox();
         webActions.clickYahooHistoricalLink();
         webActions.scrollToHistoricalDropDown();

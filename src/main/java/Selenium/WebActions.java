@@ -188,10 +188,11 @@ public class WebActions extends Thread {
     public void clickYahooHistoricalLink() {
         try {
             Thread.sleep(5000);
-            WebElement yahooFinanceLink = driver.findElement(By.cssSelector("a[href='/quote/XOM/history/'"));
+            //WebElement yahooFinanceLink = driver.findElement(By.cssSelector("a[href='/quote/XOM/history/'"));
+            WebElement yahooFinanceLink = driver.findElement(By.xpath("//a[@category='history']"));
             yahooFinanceLink.click();
         } catch (Exception e) {
-            System.out.println("error clicking Yahoo Finance link");
+            System.out.println("error clicking Yahoo Historical Finance link");
             System.out.println(e.getMessage());
         }
     }
