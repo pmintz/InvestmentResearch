@@ -33,9 +33,8 @@ public class WorkbookManagement {
 
     }
 
-    public void insertData(List<List<String>> rows){
-        Workbook destinationWorkbook = getDestinationWorkbook();
-        Sheet destSheet = destinationWorkbook.getSheetAt(7);
+    public void insertData(List<List<String>> rows, Workbook destinationWorkbook){
+        Sheet destSheet = destinationWorkbook.getSheetAt(StatementType.HIST_DATA_DEST_SHEET);
         insertRows(destSheet, rows);
     }
 

@@ -41,6 +41,8 @@ public class StatementType {
      final int DEST_COL_CASH_FLOW_START = 0;
      final int DEST_COL_CASH_FLOW_END = 12;
 
+     final static int HIST_DATA_DEST_SHEET = 7;
+
      Map<String, String> filePaths = new HashMap<>();
      Map<String, Integer> incomeCells = new HashMap<>();
     Map<String, Integer> balanceSheetCells = new HashMap<>();

@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
+import EXCEL.StatementType;
 import EXCEL.WorkbookManagement;
 import Selenium.WebActions;
+import org.apache.poi.ss.usermodel.Workbook;
+import utility.Utility;
 
 
 public class Main {
@@ -30,8 +33,11 @@ public class Main {
         webActions.clickDateRangeDropDown();
         webActions.clickMaxButton();
         List<List<String>> objTable = webActions.readTable();
+        Utility.removeDividendRow(objTable);
         WorkbookManagement wbm = new WorkbookManagement();
-        wbm.insertData(objTable);
+        Workbook destinationWorkbook = WorkbookManagement.getDestinationWorkbook();
+        wbm.insertData(objTable, destinationWorkbook);
+        WorkbookManagement.writeToDestinationWorkbook(destinationWorkbook, "Historical Data");
 
     }
 
