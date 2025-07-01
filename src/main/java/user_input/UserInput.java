@@ -3,17 +3,12 @@ package user_input;
 import batch.Batch;
 import excel.WorkbookManagement;
 import selenium.WebActions;
-import org.apache.poi.ss.usermodel.Workbook;
-import utility.Utility;
 
-import java.util.List;
 import java.util.Scanner;
 
 public class UserInput extends Thread {
 
     String readString;
-
-    WorkbookManagement workbookManagement;
     WebActions webActions;
 
     public void promptUser() {
@@ -48,8 +43,6 @@ public class UserInput extends Thread {
 
 
     }
-
-
 
 
 }
