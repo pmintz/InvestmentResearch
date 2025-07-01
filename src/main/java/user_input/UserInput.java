@@ -1,16 +1,19 @@
-package UserInput;
+package user_input;
 
-import EXCEL.WorkbookManagement;
-import Selenium.WebActions;
+import excel.WorkbookManagement;
+import selenium.WebActions;
+import org.apache.poi.ss.usermodel.Workbook;
+import utility.Utility;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class UserInput extends Thread {
 
     String readString;
 
-    WorkbookManagement workbookManagement = new WorkbookManagement();
-    WebActions webActions = new WebActions();
+    WorkbookManagement workbookManagement;
+    WebActions webActions;
 
     public void promptUser() {
 
@@ -25,6 +28,7 @@ public class UserInput extends Thread {
 
                 if (readString.equalsIgnoreCase("close")) {
                     System.out.println("Exiting program...");
+                    webActions.closeBrowser();
                     webActions.closeBrowser();
                     break;
                 } else {
@@ -48,13 +52,31 @@ public class UserInput extends Thread {
     public void run() {
 
         try {
+            webActions.morningstarLogin();
             webActions.enterTickerSymbol();
 
             if (webActions.checkForResults()) {
+                //Get Financial statements from Morningstar and insert them into excel spreadsheet
                 webActions.downloadAllFinancialStatements();
+                workbookManagement = new WorkbookManagement();
                 workbookManagement.copyData();
                 workbookManagement.removeFinancialStatementsFromDownloadFolder();
+                //Get Historical prices from yahoo
                 webActions.yahooHomePage();
+                webActions.clickYahooFinancialLink();
+                webActions.enterTickerYahooFinancialSearchBox();
+                webActions.clickYahooHistoricalLink();
+                webActions.scrollToHistoricalDropDown();
+                webActions.clickDailyDropDown();
+                webActions.selectMonthly();
+                webActions.clickDateRangeDropDown();
+                webActions.clickMaxButton();
+                List<List<String>> objTable = webActions.readTable();
+                Utility.removeDividendRow(objTable);
+                WorkbookManagement wbm = new WorkbookManagement();
+                Workbook destinationWorkbook = WorkbookManagement.getDestinationWorkbook();
+                wbm.insertData(objTable, destinationWorkbook);
+                WorkbookManagement.writeToDestinationWorkbook(destinationWorkbook, "Historical Data");
                 //webActions.pageRefresh();
             } else {
                 System.out.println("No results");

@@ -1,4 +1,4 @@
-package EXCEL;
+package excel;
 
 import java.util.HashMap;
 import java.util.Map;

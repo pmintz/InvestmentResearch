@@ -1,4 +1,4 @@
-package Selenium;
+package selenium;
 
 import org.openqa.selenium.*;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -7,13 +7,11 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.WheelInput;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static java.time.Duration.*;
 
-public class WebActions extends Thread {
+public class WebActions {
 
     //youtube
     //Java Testing with Selenium Course

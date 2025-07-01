@@ -1,4 +1,4 @@
-package EXCEL;
+package excel;
 
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -9,9 +9,8 @@ import java.io.*;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
-import static EXCEL.ExcelActions.*;
+import static excel.ExcelActions.*;
 
 public class WorkbookManagement {
     static String home = System.getProperty("user.home");

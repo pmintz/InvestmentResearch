@@ -1,14 +1,9 @@
-package Application;
+package application;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 
-import EXCEL.StatementType;
-import EXCEL.WorkbookManagement;
-import Selenium.WebActions;
-import org.apache.poi.ss.usermodel.Workbook;
-import utility.Utility;
+import selenium.WebActions;
+import user_input.UserInput;
 
 
 public class Main {
@@ -16,12 +11,12 @@ public class Main {
 
     public static void main(String[] args) throws IOException {
 
-        /*WebActions webActions = new WebActions();
-        webActions.morningstarLogin();
+        //WebActions webActions = new WebActions();
+        //webActions.morningstarLogin();
         UserInput ui = new UserInput();
-        ui.promptUser();*/
+        ui.promptUser();
 
-        WebActions webActions = new WebActions();
+       /* WebActions webActions = new WebActions();
         webActions.yahooHomePage();
         webActions.clickYahooFinancialLink();
         webActions.setTicker("GOOGL");
@@ -37,7 +32,7 @@ public class Main {
         WorkbookManagement wbm = new WorkbookManagement();
         Workbook destinationWorkbook = WorkbookManagement.getDestinationWorkbook();
         wbm.insertData(objTable, destinationWorkbook);
-        WorkbookManagement.writeToDestinationWorkbook(destinationWorkbook, "Historical Data");
+        WorkbookManagement.writeToDestinationWorkbook(destinationWorkbook, "Historical Data");*/
 
     }
 
